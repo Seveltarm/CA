@@ -14,15 +14,35 @@ describe('fubar return', () => {
         expect(input).toBe(param);
     });
 
-    it('it checks value of display fu', () => {
-        const numberInputEqual = 3;
+    it('it should display FizzBuzz', () => {
+        const numberDividedByThreeAndFive = 30;
 
-        const checkNumberInputEqualThree = fubar.displayFuOrReturnNumber(numberInputEqual);
-        expect(checkNumberInputEqualThree).toBe('fuuu');
+        const checkNumberDivisionByThreeAndFive = fubar.checkNumberReturnValue(numberDividedByThreeAndFive);
 
-        const numberInputNotEqual = 5;
+        expect(checkNumberDivisionByThreeAndFive).toBe('Fizz Buzz');
+    });
 
-        const checkNumberInputNotEualThree = fubar.displayFuOrReturnNumber(numberInputNotEqual);
-        expect(checkNumberInputNotEualThree).toBe(numberInputNotEqual);  
+    it('it should display Fizz', () => {
+        const numberDividedByThree = 6;
+
+        const checkNumberDivisionByThree = fubar.checkNumberReturnValue(numberDividedByThree);
+
+        expect(checkNumberDivisionByThree).toBe('Fizz');
+    });
+
+    it('it should display Buzz', () => {
+        const numberDividedByFive = 10;
+
+        const checkNumberDivisionByFive = fubar.checkNumberReturnValue(numberDividedByFive);
+
+        expect(checkNumberDivisionByFive).toBe('Buzz');
+    });
+
+    it('it should display number', () => {
+        const otherNumber = 7;
+
+        const otherNumberReturn = fubar.checkNumberReturnValue(otherNumber);
+
+        expect(otherNumberReturn).toBe(otherNumberReturn);
     });
 });
