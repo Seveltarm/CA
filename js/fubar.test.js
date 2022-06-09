@@ -1,28 +1,21 @@
 const { Fubar } = require('./fubar.js');
 
-describe('fubar return', () => {
+describe('Fubar should return divided values or return number', () => {
     let fubar;
 
     beforeEach(() => {
         fubar = new Fubar();
     });
 
-    it('should return same value as input', () => {
-        const param = 'param';
-        const input = fubar.fubar(param);
-
-        expect(input).toBe(param);
-    });
-
-    it('it should display FizzBuzz', () => {
+    it('should display FizzBuzz when divided by 3 and 5 without remainder', () => {
         const numberDividedByThreeAndFive = 30;
 
         const checkNumberDivisionByThreeAndFive = fubar.checkNumberReturnValue(numberDividedByThreeAndFive);
 
-        expect(checkNumberDivisionByThreeAndFive).toBe('Fizz Buzz');
+        expect(checkNumberDivisionByThreeAndFive).toBe('FizzBuzz');
     });
 
-    it('it should display Fizz', () => {
+    it('should display Fizz when divided by 3 without remainder', () => {
         const numberDividedByThree = 6;
 
         const checkNumberDivisionByThree = fubar.checkNumberReturnValue(numberDividedByThree);
@@ -30,7 +23,7 @@ describe('fubar return', () => {
         expect(checkNumberDivisionByThree).toBe('Fizz');
     });
 
-    it('it should display Buzz', () => {
+    it('should display Buzz when divided by 5 without remainder', () => {
         const numberDividedByFive = 10;
 
         const checkNumberDivisionByFive = fubar.checkNumberReturnValue(numberDividedByFive);
@@ -38,7 +31,7 @@ describe('fubar return', () => {
         expect(checkNumberDivisionByFive).toBe('Buzz');
     });
 
-    it('it should display number', () => {
+    it('should return number', () => {
         const otherNumber = 7;
 
         const otherNumberReturn = fubar.checkNumberReturnValue(otherNumber);

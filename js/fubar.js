@@ -1,27 +1,22 @@
 class Fubar {
-    fubar(a) { 
-        return a;
-    }
-    checkNumberReturnValue(number) {
-        const fizzBuzzArray = [
-            this.isFizzBuzz,
+    constructor() {
+        this.returnString = '';
+        this.fizzBuzzArray = [
+            '',
             this.isFizz,
             this.isBuzz,
             this.returnNumber
-        ]
-       
-        for (const functionFromArray of fizzBuzzArray) {
-            const fromArray = functionFromArray(number);
-            if (fromArray) {
-                return fromArray;
-            }    
-        }
-    }
+        ];
+    }    
 
-    isFizzBuzz(number) {
-        if (!(number % 3) && !(number % 5)) {
-            return 'Fizz Buzz';
-        }
+    checkNumberReturnValue(number) {
+        this.fizzBuzzArray.reduce((accumulator, arrayElement) => {
+            const checkElementValue = arrayElement(number);
+            if (checkElementValue) {
+                this.returnString += checkElementValue;
+            }
+        });
+        return this.returnString;
     }
     
     isFizz(number) {
@@ -36,8 +31,10 @@ class Fubar {
         }
     }
 
-    returnNumber(number) {
-        return number;
+    returnNumber = (number) => {
+        if (!this.returnString) {
+            return number;
+        }    
     }
 }
 
