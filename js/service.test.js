@@ -11,17 +11,17 @@ global.fetch = jest.fn(() =>
   })
 );
 
-const { UsersGameTime } = require('./service.js');
+const { UserService } = require('./service.js');
 
 beforeEach(() => {
   fetch.mockClear();
 });
 
-describe('UsersGameTime', () => {
+describe('UserService', () => {
   let users;
 
   beforeEach(() => {
-    users = new UsersGameTime();
+    users = new UserService();
   });
 
   it('return users id', () => {

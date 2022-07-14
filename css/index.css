@@ -1,16 +1,9 @@
 body {
-    margin: 0px;
+    margin: 0;
     height: 100vh;
 }
 
 .page {
     height: 100%;
     background: black;
-}
-
-.backgorund-image-cover {
-    background-size: cover;
-    background-repeat: no-repeat;
-    align-items: flex-end;
-
 }

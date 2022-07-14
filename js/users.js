@@ -1,41 +1,61 @@
-let allUsers = new UsersGameTime();
-let usersId = allUsers.fetchUsers();
+let userService = new UserService();
+let fetchUserId = userService.fetchUsers();
 
-usersId.then((singleUser) => {
-    singleUser.map((singleId) => {
-        allUsers.fetchSingleUser(singleId).then((userInfo) => {
-            if (userInfo.response) {
-                getUserGamesInformation(userInfo);
-            }
-        })
-    })
-})
+fetchUserId.then((singleUser) => {
+    let usersPromise = [];
+    singleUser.map(userId => {
+        usersPromise.push(userService.fetchSingleUser(userId));
+    });
 
-function getUserGamesInformation(userInfo) {
-    let userGames = [];
-    if (userInfo.response.games) {
-        for (const [key] of Object.entries(userInfo.response.games)) {
-            userGames.push({
-                gameId: userInfo.response.games[key].appid,
-                gameTime: userInfo.response.games[key].playtime_forever
-            });
+    Promise.all(usersPromise).then((userInfo) => {
+        for (let user of userInfo) {
+            console.log('Owned games: ', user.response.games);
         }
-        sortByGameTime(userGames);
-        getUserWholeGameTime(userGames);
+
+        let userGames = [];
+
+        userInfo.forEach(user => {
+            userGames.push(user.response.games)
+        })
+        getUsersGames(userGames);
+    });
+});
+
+function createGameData(...games) {
+    let gameData = {};
+    for (let el of games) {
+         gameData = {
+            id: el.appid,
+            commonGameTime: (gameData.commonGameTime ? gameData.commonGameTime : 0) + el.playtime_forever
+        };
     }
+    return gameData;
 }
 
-function sortByGameTime(userGames) {
-    userGames.sort((a, b) => {
-        return b.gameTime - a.gameTime;
+
+function getUsersGames(userGames) {
+    let games = [];
+    userGames.shift().filter(singleGame => {
+        return userGames.map(mappedGames => {
+            return mappedGames.filter(otherUserSingleGame => {
+                if (otherUserSingleGame.appid === singleGame.appid) {
+                    games.push(createGameData(singleGame, otherUserSingleGame));
+                }
+            })
+        })
     });
-    console.log('User Games: ', userGames);
+    sortByGameTime(games);
+    getUserWholeGameTime(games);
 }
 
-function getUserWholeGameTime(userGames) {
-    let time = 0;
-    userGames.forEach((game) => {
-        return time += game.gameTime
+function sortByGameTime(games) {
+    games.sort((a, b) => {
+        return b.commonGameTime - a.commonGameTime;
     });
-    console.log('Game Time: ', time);
+}
+
+function getUserWholeGameTime(games) {
+    for (let game of games) {
+        console.log(`Game Time ${game.id}: `, game.commonGameTime);
+    }
 }

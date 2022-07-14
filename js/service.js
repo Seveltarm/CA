@@ -1,16 +1,12 @@
-class UsersGameTime {
+class UserService {
     async fetchUsers() {
         const resp = await fetch(`https://steam-web-api-test.herokuapp.com/users`, {});
-        const usersId = await resp.json();
-
-        return usersId;
+        return await resp.json();
     }
     async fetchSingleUser(userId) {
         const resp = await fetch(`https://steam-web-api-test.herokuapp.com/users/${userId}`, {});
-        const userData = await resp.json();
-
-        return userData;
+        return await resp.json();
     }
 }
 
-if (typeof module !== 'undefined') { module.exports = { UsersGameTime } };
+if (typeof module !== 'undefined') { module.exports = { UserService } }
