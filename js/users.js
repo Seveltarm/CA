@@ -21,31 +21,33 @@ fetchUserId.then((singleUser) => {
     });
 });
 
-function createGameData(...games) {
-    let gameData = {};
-    for (let el of games) {
-         gameData = {
-            id: el.appid,
-            commonGameTime: (gameData.commonGameTime ? gameData.commonGameTime : 0) + el.playtime_forever
-        };
+async function createGameData(games) {
+    for (let game of games) {
+        await userService.fetchUserGames(game.id).then((title) => {
+            game.name = title[game.id].data?.name;
+        });
     }
-    return gameData;
+    sortByGameTime(games);
+    getUserWholeGameTime(games);
 }
 
-
 function getUsersGames(userGames) {
-    let games = [];
+    let ownedGamesByUsers = [];
     userGames.shift().filter(singleGame => {
         return userGames.map(mappedGames => {
             return mappedGames.filter(otherUserSingleGame => {
                 if (otherUserSingleGame.appid === singleGame.appid) {
-                    games.push(createGameData(singleGame, otherUserSingleGame));
+                    const gameData = {
+                        id: singleGame.appid,
+                        commonGameTime: otherUserSingleGame.playtime_forever + singleGame.playtime_forever
+                    };
+                    ownedGamesByUsers.push(gameData)
                 }
             })
         })
     });
-    sortByGameTime(games);
-    getUserWholeGameTime(games);
+    createGameData(ownedGamesByUsers);
+
 }
 
 function sortByGameTime(games) {
@@ -56,6 +58,6 @@ function sortByGameTime(games) {
 
 function getUserWholeGameTime(games) {
     for (let game of games) {
-        console.log(`Game Time ${game.id}: `, game.commonGameTime);
+        console.log(`Game Time: ${game.name} `, game.commonGameTime);
     }
 }
