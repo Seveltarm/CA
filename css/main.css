@@ -5,7 +5,7 @@
     color: white;
 }
 
-.title-card__image--position, .last-played__image--position {
+.title-card__image--position, .last-played__game--image-position {
     background-size: cover;
     background-repeat: no-repeat;
     align-items: flex-end;
