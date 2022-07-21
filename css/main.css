@@ -1,26 +1,26 @@
-.title {
+.title-card {
     margin-left: 10vh;
     margin-right: 10vh;
     margin-top: 5vh;
     color: white;
 }
 
-.title__main, .last-played__main {
+.title-card__image--position, .last-played__image--position {
     background-size: cover;
     background-repeat: no-repeat;
     align-items: flex-end;
 }
 
-.title__main--image {
+.title-card__image {
     background-image: url('../assets/img/elden.jpg');
     height: 60vh;
 }
 
-.title__string-placeholder {
+.title-card__header {
     height: 100%;
 }
 
-.title__text {
+.title-card__description {
     display: flex;
     align-items: flex-end;
     height: 90%;
@@ -32,36 +32,36 @@
     margin: 3vh 15px 15px 0;
 }
 
-.last-played--space-top {
+.last-played__space-top {
     margin-top: 15px;
 }
 
-.last-played__main--item {
+.last-played__game {
     display: flex;
     width: calc(100% / 3);
     margin: 0 15px 0 15px;
     height: 10rem;
 }
 
-.title-1 {
+.last-played__image-first {
     background-image: url('../assets/img/img1.jpg');
 }
 
-.title-2 {
+.last-played__image-second {
     background-image: url('../assets/img/img2.jpg');
 }
 
-.title-3 {
+.last-played__image-third {
     background-image: url('../assets/img/img3.jpg');
 }
 
 @media only screen and (max-width: 992px) {
-    .title {
+    .title-card {
         margin-left: 10px;
         margin-right: 10px;
     }
 
-    .title__main--image {
+    .title-card__image--position {
         height: 25vh;
     }
 
@@ -70,7 +70,7 @@
         margin-right: 10px;
     }
 
-    .last-played__main--item {
+    .last-played__game {
         height: 20rem;
         margin: 0 5px 0 5px;
     }

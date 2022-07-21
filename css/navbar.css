@@ -36,6 +36,6 @@
     filter: invert(100%);
 }
 
-.navbar--space-right {
+.navbar__button--space-right {
     margin-right: 5px;
 }
