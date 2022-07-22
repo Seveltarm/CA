@@ -5,7 +5,7 @@
     color: white;
 }
 
-.title-card__image--position, .last-played__game--image-position {
+.title-card__image--position {
     background-size: cover;
     background-repeat: no-repeat;
     align-items: flex-end;
@@ -16,11 +16,11 @@
     height: 60vh;
 }
 
-.title-card__header {
+.title-card__description {
     height: 100%;
 }
 
-.title-card__description {
+.title-card__title {
     display: flex;
     align-items: flex-end;
     height: 90%;
@@ -28,12 +28,19 @@
 
 .last-played {
     color: white;
-    display: flex;
     margin: 3vh 15px 15px 0;
 }
 
-.last-played__space-top {
-    margin-top: 15px;
+.last-played__header {
+    display: flex;
+    width: 100%;
+    margin: 0 15px;
+}
+
+.last-played__games {
+    display: flex;
+    margin: 3vh 15px 15px 0;
+    width: 100%;
 }
 
 .last-played__game {
@@ -41,17 +48,19 @@
     width: calc(100% / 3);
     margin: 0 15px 0 15px;
     height: 10rem;
+    background-size: cover;
+    align-items: flex-end;
 }
 
-.last-played__image-first {
+.last-played__game--first {
     background-image: url('../assets/img/img1.jpg');
 }
 
-.last-played__image-second {
+.last-played__game--second {
     background-image: url('../assets/img/img2.jpg');
 }
 
-.last-played__image-third {
+.last-played__game--third {
     background-image: url('../assets/img/img3.jpg');
 }
 
