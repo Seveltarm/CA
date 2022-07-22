@@ -1,0 +1,41 @@
+.navbar {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar__buttons {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__button {
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: flex-end;
+}
+
+.navbar__button--burger {
+    background-image: url('../assets/img/hamburger.svg');
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.navbar__button--icon {
+    background-image: url('../assets/img/logo.jpg');
+    width: 50px;
+    height: 50px;
+    background-position: center;
+}
+
+.navbar__button--search {
+    background-image: url('../assets/img/loop.png');
+    width: 15px;
+    height: 15px;
+    filter: invert(100%);
+}
+
+.navbar__button--space-right {
+    margin-right: 5px;
+}
